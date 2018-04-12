@@ -1,27 +1,41 @@
 package project.httpclient;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import java.io.IOException;
+
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import project.Application;
 import project.httpclient.util.HttpServices;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootApplication
-@TestPropertySource(locations = "classpath:application.properties")
+
+
+
+@RunWith(SpringRunner.class)
+@SpringBootTest()
 public class HttpClientTestIT {
+
 	
 	@Test
 	public void testPostMethod() {
-	//	HttpClient client = new HttpClient();
-		HttpServices servise = new HttpServices();
-		servise.postMethod("Den", "asdff", "http://localhost:8080/users");
+		HttpClient client = new HttpClient();
+		HttpServices services = client.getHttpService();
+		boolean result = services.postMethod("Den", "asdff", "http://localhost:8080/users");
+		assertThat(result, is(false));
 	}
 
-	
-	
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testEmptyUrlExcept() {
@@ -31,32 +45,5 @@ public class HttpClientTestIT {
 	
 
 	
-	@Test
-	public void testSerializeExcept() {
-		HttpServices servise = new HttpServices();
-		
-		servise.postMethod("Den", "asdcz", "http://localhost:8080/users");
-			
-	}
-	
-	
-	
 
-//	@Test
-//	public void testCreateUser() {
-//		OkHttpClient clientOk = new OkHttpClient();
-//		String json = "{\"userName\":\"Ronan\",\"password\":\"zcvbddhgdrf\"}";
-//
-//		RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
-//		Request request = new Request.Builder().url("http://localhost:8080/users").post(body).build();
-//		System.out.println("after req: " + request.toString());
-//		try {
-//			Response response = clientOk.newCall(request).execute(); 
-//			System.out.println(response.toString());
-//			String requestBody = response.body().string();
-//			System.out.println(requestBody);
-//		} catch (IOException e) {
-//			throw new RuntimeException("Test error", e);
-//		}
-//	}
 }

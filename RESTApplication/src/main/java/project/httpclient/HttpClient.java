@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import project.httpclient.util.HttpServices;
 
+
 public class HttpClient {
 
 	static String url = "http://localhost:8080/users";
 	static final Logger log = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[0].getClassName());
+	
 	public static void main(String[] ags) {
 		
 		
@@ -26,7 +28,8 @@ public class HttpClient {
 			System.out.println("Please enter password!");
 			password = scanner.nextLine();
 				if(!userName.equals("") & !password.equals("")) {
-					getHttpService().postMethod(userName, password,url);
+					HttpServices services = getHttpService();
+					services.postMethod(userName, password, url);
 				}else {
 					System.out.println("UserName and password can't be empty");
 				}
@@ -36,9 +39,10 @@ public class HttpClient {
 		
 	}
 	
-	public static HttpServices getHttpService() {
+	public static  HttpServices getHttpService() {
 		return new HttpServices();
 	}
 
 
+	
 }

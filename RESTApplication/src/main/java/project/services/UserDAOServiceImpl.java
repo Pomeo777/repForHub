@@ -15,10 +15,18 @@ import project.repository.UsersCrudRepository;
 public class UserDAOServiceImpl implements UserService  {
 	
 	static final Logger log = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[0].getClassName());
+	
+	// Injecting repository
 	@Autowired
 	UsersCrudRepository usersRepository;
 	
 	
+	/*
+	 * method for add new User into DB
+	 @param User - object for saving in DB. 
+	 @return - true if object was saved, otherwise - false
+	 @method findByUserNameAndPasswor(user.getUserName(), user.getPassword()) - is  created by us  method for check that User with same parameters isn't in DB
+	 */
 	@Override
 	public boolean createUser(User user) {
 		log.debug("post method");
@@ -32,7 +40,12 @@ public class UserDAOServiceImpl implements UserService  {
 		return true;
 		}
 	}
-
+/*
+ * the comments from next three methods //TODO
+ * 
+ * 
+ * 
+ */
 	@Override
 	public User get(int id) {
 		log.debug("get method");

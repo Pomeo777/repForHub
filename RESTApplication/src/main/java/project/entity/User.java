@@ -1,6 +1,8 @@
 package project.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import project.controllers.UserDTO;
+
+/*
+ * Entity which we are manipulation
+ * represent  entity in database
+ * 
+ */
 
 @Entity
 @Table(name = "users")
@@ -65,6 +73,7 @@ public class User implements Serializable{
 	public String getPassword() {
 		return password;
 	}
+	
 	
 	@Override
 	public String toString() {

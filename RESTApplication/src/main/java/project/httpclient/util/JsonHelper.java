@@ -3,6 +3,14 @@ package project.httpclient.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+/*
+ * Class for transformation some object in string json format 
+ * or conversely
+ * 
+ */ 
+
+
 public class JsonHelper {
 	private final static ObjectMapper mapper = new ObjectMapper();
 	public static String serialize(Object obj) {
